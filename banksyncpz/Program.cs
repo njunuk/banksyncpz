@@ -10,6 +10,7 @@ public class BankAccount
 public class Program
 {
     //private static Mutex mutex = new Mutex(false, "mmutex");
+    Random rng = new Random();
     private static Semaphore semaphore = new Semaphore(3, 3);
     static void Main(string[] args)
     {
@@ -24,7 +25,7 @@ public class Program
                     Console.WriteLine($"Thread {Thread.CurrentThread.ManagedThreadId} waiting");
                     semaphore.WaitOne();
                     Thread.Sleep(1000);
-                    Console.WriteLine($"Thread {Thread.CurrentThread.ManagedThreadId} enters");
+                    Console.WriteLine($"Thread {Thread.CurrentThread.ManagedThreadId} enters, num: "+rng.Next(0, 10000));
                     Thread.Sleep(3000);
                     Console.WriteLine($"Thread {Thread.CurrentThread.ManagedThreadId} exits");
                     semaphore.Release();
